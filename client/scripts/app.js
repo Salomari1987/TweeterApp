@@ -8,8 +8,8 @@ app.send = function(tweet){
 	  data: JSON.stringify(tweet),
 	  contentType: 'application/json',
 	  success: function (data) {
-	  	$('#status').text('success')
-	    console.log('send success')
+	  	$('#status').text("success" + " Tweet is: " + data.text)
+	    console.log(data)
 	  },
 	  error: function (data) {
 	  	$('#status').text('failure')

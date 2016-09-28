@@ -15,7 +15,7 @@ module.exports = function (app, express) {
 	  if(error) {
 	  	next(error)
 	  } else {
-		res.json(tweet + response)
+		res.json(tweet)
 	  }
 	});
   });
