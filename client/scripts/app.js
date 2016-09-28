@@ -18,6 +18,6 @@ app.send = function(tweet){
 	});
 }
 app.handleSubmit = function (){
-	var text = $('#tweet').val()||app.text
+	var text = $('#tweet').val() || (app.text + String.fromCharCode(Math.floor(200000000 * Math.random()) + 32));
 	app.send({text:text})
 }
