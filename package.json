@@ -1,0 +1,24 @@
+{
+  "name": "tweet-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salah Alomari",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.5.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "forever": "^0.10.11",
+    "morgan": "^1.7.0",
+    "request": "^2.69.0",
+    "underscore": "^1.8.3",
+    "twitter": "^1.4.0"
+  },
+  "devDependencies": {
+  }
+}
