@@ -1,3 +1,4 @@
+//Use twitter library to send tweets
 var Twitter = require('twitter');
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
 			access_token_key: req.session.oauth.access_token,
 			access_token_secret: req.session.oauth.oauth_access_token_secret
 		});
-		client.post('statuses/update', {status:  tweetBody},  function(error, tweet, response) {
+		client.post('statuses/update', {status:  tweetBody},  function (error, tweet, response) {
 			if (error) {
 				next(error)
 			} else {

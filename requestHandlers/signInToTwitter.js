@@ -1,12 +1,13 @@
+
 var oauth = require('oauth').OAuth;
 var callbackURL = "http://127.0.0.1:8000/callback";
 var oa = new oauth(
-	"https://api.twitter.com/oauth/request_token",
-	"https://api.twitter.com/oauth/access_token",
+	"https://api.twitter.com/oauth/request_token", //Request URL
+	"https://api.twitter.com/oauth/access_token", //Access token URL
 	process.env.TWITTER_CONSUMER_KEY,
 	process.env.TWITTER_CONSUMER_SECRET,
 	"1.0",
-	callbackURL,
+	callbackURL, //Callback url, see above
 	"HMAC-SHA1"
 );
 module.exports = {
@@ -29,6 +30,7 @@ module.exports = {
 		if (req.session.oauth !== undefined) {
 			req.session.oauth.verifier = req.query.oauth_verifier;
 			var oauth = req.session.oauth;
+			
 			oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, function (error, oauth_access_token, oauth_access_token_secret, results) {
 				if (error) {
 					console.log("Error: Twitter login failed: ", error);
@@ -40,8 +42,9 @@ module.exports = {
 					
 					console.log("Logged in to Twitter");
 					
-					var output = '<html><head></head><body onload="window.close();">Close this window</body></html>';
-					res.send(output);
+					//Close authorization window
+					var closeWindow = '<html><head></head><body onload="window.close();">Close this window</body></html>';
+					res.send(closeWindow);
 				}
 			});
 		} else {
