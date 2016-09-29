@@ -13,7 +13,7 @@ app.send = function(tweet){
 	    console.log(data)
 	  },
 	  error: function (data) {
-	  	$('#status').text('failure')
+	  	$('#status').text('failure, this is a duplicate tweet, please try again')
 	    console.error('tweet: Failed to send tweet. Error');
 	  }
 	});
@@ -29,7 +29,23 @@ app.openTwitterWindow = function () {
 
 	interval = window.setInterval((function() {
 		if (twitter_window.closed) {
+			$("#tweet").prop('disabled', false);
+			$("#tweet_btn").prop('disabled', false);
 			window.clearInterval(interval);
 		}
 	}),1000);
+}
+
+app.countChars = function () {
+	var text = $('#tweet').val();
+	if (text.length > 140) {
+		$("#tweet_btn").prop('disabled', true);
+		$("#charCount").text(text.length.toString()).css("color", "red")
+		$("#tooLong").prop('hidden', false).text(' - 140 chars max').css("color", "red")
+	} else {
+		$("#tweet_btn").prop('disabled', false);
+		$("#charCount").text(text.length.toString())
+		$("#charCount").text(text.length.toString()).css("color", "black")
+		$("#tooLong").prop('hidden', true)
+	}
 }
