@@ -12,38 +12,24 @@ var oa = new oauth(
 	"HMAC-SHA1"
 );
 module.exports = function (app, express) {
-  //center routes
   app.post('/api/sendTweet', function (req, res, next) {
-  	console.log(req.session)
-  	if (req.session.oauth !== undefined && req.session.oauth.screen_name !== undefined) {
-	
-  /**
-   * Below is code to illustrate how to send a status update to Twitter
-   **/
-
-	    var url = 'https://api.twitter.com/1.1/statuses/update.json';
-	    
-	    var oauth_params = {
-					consumer_key: process.env.TWITTER_CONSUMER_KEY,
-					consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-	        		token: req.session.oauth.access_token,
-					token_secret: req.session.oauth.oauth_access_token_secret
-				};
-
-		var r = request.post({url:url, oauth:oauth_params, form:{status: req.body.text}}, function(error, response, body) {
-	  
-			if (error) {
-				console.log("Error occured: "+ error);
-				res.end();
-			} else {
-				console.log(body)
-				res.end("Tweet sent successfully! Check out your Twitter page");
-			}
-		})
-	} else {
-		console.log("Could not authenticate user. Redirecting to /");
-		res.redirect('/');
-	}
+  console.log(req.session)
+  	var tweetBody =  req.body.text;
+	var client = new Twitter({
+		consumer_key: process.env.TWITTER_CONSUMER_KEY,
+		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+		access_token_key: req.session.oauth.access_token,
+		access_token_secret: req.session.oauth.oauth_access_token_secret
+	});
+	console.log("before post", client)
+	client.post('statuses/update', {status:  tweetBody},  function(error, tweet, response) {
+		console.log("sent", error)
+	  if(error) {
+	  	next(error)
+	  } else {
+		res.json(tweet)
+	  }
+	});
   });
   app.get('/login', function (req, res) {
   	  	console.log("login called..");
