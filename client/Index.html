@@ -3,25 +3,32 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Tweet Test </title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />		
 		<script src="scripts/app.js"></script>
-		<meta name="google-site-verification" content="xEI5uEM3oA_-U1QbqUtKfLZAS_Ui4PGeG81baw6jd8Y"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	</head>
 	<body>
-		<div id='main'>
-		  <form id='send'>
-          	<input id='tweet' type='text' placeholder='add text here'></input>
-          	<input type="button" name="submit" class="submit" onclick="app.handleSubmit();" value="share"></input>
-        </form>
-        </div>
-        <div>
-        	<span>status:</span><span id='status'></span>
-        <div>
-        <h1 id="header">Update twitter status</h1>
-		<div id="login">
-			<a href="#" id="login" onclick="app.openTwitterWindow();">Login to Twitter</a>
+	    <h1 id="header" class='text-center' style='border-bottom: 1px black solid; margin:20px; padding:10px;'>Tweet</h1>
+	    <div id="login" class='container-fluid text-center' style='margin:20px;'>
+			<div>
+				<span> Text input is disabled, press the authorize button to allow the application access to your twitter account and post tweets </span>
+				<a class='btn btn-info' href="#" id="login" onclick="app.openTwitterWindow();">Authorize Application</a>
+			</div>
 		</div>
+		<div id='main' class='container-fluid'>
+		  	<form id='send' class='col-xs-12'>
+	         	<textarea class="col-xs-8 form-control" rows="3" id='tweet' type='text' placeholder='add text here' disabled oninput="app.countChars()"></textarea>
+	         	<span id='charCount'>0 </span><span> characters </span>
+	          	<input id="tweet_btn" type="button" name="submit" style='width:100px; float:right;'class="twitter-share-button submit btn btn-info" onclick="app.handleSubmit();" value="share" disabled></input>
+	          	<span id='tooLong' hidden> </span>
+        	</form>
+        </div>
+        <div class="container-fluid" style='border-top:black solid 1px; padding:10px; margin:50px;'>
+        	<h5><span>status:</span><span id='status'></span></h4>
+        </div>
 	</body>
 </html>
