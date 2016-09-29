@@ -6,7 +6,7 @@ var PORT = 8000;
 
 require('./config/APIKeys.js');
 require ('./config/middleware.js')(app, express);
-require ('./config/requestHandler.js')(app, express);
+require ('./config/routeHandler.js')(app, express);
 
 app.listen(PORT, function serverListen() {
   console.log('Listening on port ' + PORT);
