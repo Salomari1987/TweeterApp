@@ -29,7 +29,7 @@ module.exports = {
 		if (req.session.oauth !== undefined) {
 			req.session.oauth.verifier = req.query.oauth_verifier;
 			var oauth = req.session.oauth;
-			oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, function(error, oauth_access_token, oauth_access_token_secret, results){
+			oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, function (error, oauth_access_token, oauth_access_token_secret, results) {
 				if (error) {
 					console.log("Error: Twitter login failed: ", error);
 					next("Error occured with callback: "+ error);
