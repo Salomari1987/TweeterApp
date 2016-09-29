@@ -8,26 +8,12 @@
 		<link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />		
 		<script src="scripts/app.js"></script>
 		<meta name="google-site-verification" content="xEI5uEM3oA_-U1QbqUtKfLZAS_Ui4PGeG81baw6jd8Y"/>
-		<script type="text/javascript">
-			var twitter_window,
-				  interval;
-			function openTwitterWindow() {
-				 twitter_window = window.open('./login', 'window', 'status=0,menubar=0,resizable=1,width=500,height=800;');
-
-				 interval = window.setInterval((function() {
-				 	if (twitter_window.closed) {
-				 		window.clearInterval(interval);
-	          //window.location = './tweetpic';
-				 	}
-				 }),1000);
-			}
-		</script>	
 	</head>
 	<body>
 		<div id='main'>
 		  <form id='send'>
           	<input id='tweet' type='text' placeholder='add text here'></input>
-          	<input type="button" name="submit" class="submit" onclick="app.handleSubmit()" value="share"></input>
+          	<input type="button" name="submit" class="submit" onclick="app.handleSubmit();" value="share"></input>
         </form>
         </div>
         <div>
@@ -35,7 +21,7 @@
         <div>
         <h1 id="header">Update twitter status</h1>
 		<div id="login">
-			<a href="#" id="login" onclick="openTwitterWindow();">Login to Twitter</a>
+			<a href="#" id="login" onclick="app.openTwitterWindow();">Login to Twitter</a>
 		</div>
 	</body>
 </html>
